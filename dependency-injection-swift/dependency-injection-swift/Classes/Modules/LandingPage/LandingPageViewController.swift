@@ -25,7 +25,22 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad(view: self)
+        
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(test)))
     }
     
-    // TODO: add your code here
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    @objc
+    private func test() {
+        presenter.toHistory()
+    }
 }

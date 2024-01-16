@@ -16,13 +16,8 @@ class LandingPageModule: ILandingPageModule {
         self.appRouter = appRouter
     }
     
-    func displayPage(parameters: [String : Any]) {
-        let interactor = LandingPageInteractor()
-        let router = LandingPageRouter(appRouter: appRouter)
-        let presenter = LandingPagePresenter(interactor: interactor, router: router, parameters: parameters)
-        let viewController = LandingPageViewController(presenter: presenter)
-        interactor.presenter = presenter
-        let test = UINavigationController(rootViewController: viewController)
-        self.appRouter.presentView(test, animated: true)
+    func displayPage(parameters: [String : Any]?) {
+        guard let view = appRouter.resolver.resolve(LandingPageViewController.self, arguments: appRouter, parameters) else { fatalError("cant resolve landing page") }
+        appRouter.setViewControllerToStack(view)
     }
 }

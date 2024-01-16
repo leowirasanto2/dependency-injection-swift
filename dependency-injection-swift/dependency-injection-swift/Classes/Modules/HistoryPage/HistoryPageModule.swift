@@ -17,13 +17,8 @@ class HistoryPageModule: IHistoryPageModule {
         self.appRouter = appRouter
     }
     
-    func displayPage(parameters: [String : Any]) {
-        let interactor = HistoryPageInteractor()
-        let router = HistoryPageRouter()
-        let presenter = HistoryPagePresenter(interactor: interactor, router: router, parameters: parameters)
-        let viewController = HistoryPageViewController(presenter: presenter)
-        router.viewController = viewController
-        interactor.presenter = presenter
-        appRouter.pushView(viewController, animated: true)
+    func displayPage(parameters: [String : Any]?) {
+        guard let view = appRouter.resolver.resolve(HistoryPageViewController.self, arguments: appRouter, parameters) else { fatalError("cant resolve landing page") }
+        appRouter.pushView(view, animated: true)
     }
 }

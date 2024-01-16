@@ -15,6 +15,7 @@ class HistoryPageViewController: UIViewController, IHistoryPageViewController {
     init(presenter: IHistoryPagePresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
+        view.backgroundColor = .red
     }
     
     required init?(coder: NSCoder) {

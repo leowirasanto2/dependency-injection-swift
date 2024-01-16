@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 
 class HistoryPageRouter: IHistoryPageRouter {
-    weak var viewController: UIViewController?
-    
-    init() {
+    private let appRouter: IAppRouter
+
+    init(appRouter: IAppRouter) {
+        self.appRouter = appRouter
     }
-    
     //TODO: - add your code here
 }

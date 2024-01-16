@@ -5,20 +5,14 @@
 //  Created by Leo Laia on 16/01/24.
 //
 
+import Swinject
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    var appRouter: IAppRouter? {
-        let productConstructors: (_ appRouter: IAppRouter) -> ProductRouter = { appRouter in
-            let r = appRouter
-            r.navigationController = self.navigationController
-            return ModuleFactory(appRouter: r)
-        }
-        return AppRouter(productConstructor: productConstructors)
-    }
+    var appRouter: IAppRouter?
     
     var navigationController: UINavigationController?
     
@@ -28,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let basePage = BasePage()
         let navigationController = UINavigationController(rootViewController: basePage)
         self.navigationController = navigationController
+        self.appRouter = createAppRouter()
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
@@ -39,6 +34,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func open(_ module: Module, navigationController: UINavigationController?) {
         appRouter?.presentModule(module, parameters: [:])
+    }
+    
+    func createAppRouter() -> IAppRouter? {
+        let productConstructors: (_ appRouter: IAppRouter) -> ProductRouter = { appRouter in
+            appRouter.navigationController = self.navigationController
+            return ModuleFactory(appRouter: appRouter)
+        }
+        let assembler = Assembler()
+        assembler.apply(assemblies: ModuleFactory.getAssemblies())
+        return AppRouter(assembler: assembler, productConstructor: productConstructors)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

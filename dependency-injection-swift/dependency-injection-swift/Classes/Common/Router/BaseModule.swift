@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BaseModule: AnyObject {
-    func displayPage(parameters: [String: Any])
+    func displayPage(parameters: [String: Any]?)
 }
