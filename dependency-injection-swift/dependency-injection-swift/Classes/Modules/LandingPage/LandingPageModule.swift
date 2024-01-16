@@ -22,7 +22,6 @@ class LandingPageModule: ILandingPageModule {
         let presenter = LandingPagePresenter(interactor: interactor, router: router, parameters: parameters)
         let viewController = LandingPageViewController(presenter: presenter)
         interactor.presenter = presenter
-        let test = UINavigationController(rootViewController: viewController)
-        self.appRouter.presentView(test, animated: true)
+        appRouter.setViewControllerToStack(viewController)
     }
 }

@@ -11,9 +11,12 @@ import UIKit
 
 class LandingPageRouter: ILandingPageRouter {
     private let appRouter: IAppRouter
-
+    
     init(appRouter: IAppRouter) {
         self.appRouter = appRouter
     }
-    //TODO: - add your code here
+
+    func navigateToHistory() {
+        appRouter.presentModule(PageModule.history, parameters: [:])
+    }
 }

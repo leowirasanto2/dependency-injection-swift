@@ -14,6 +14,7 @@ protocol IAppRouter: ProductRouter {
     func presentView(_ view: UIViewController?, animated: Bool)
     func pushView(_ view: UIViewController?, animated: Bool)
     func popVC(animated: Bool)
+    func setViewControllerToStack(_ view: UIViewController?)
 }
 
 class AppRouter: IAppRouter {
@@ -43,5 +44,11 @@ class AppRouter: IAppRouter {
     
     func popVC(animated: Bool) {
         navigationController?.popViewController(animated: animated)
+    }
+    
+    func setViewControllerToStack(_ view: UIViewController?) {
+        if let v = view, navigationController?.viewControllers.first(where: {$0 == v}) == nil {
+            navigationController?.viewControllers.append(v)
+        }
     }
 }

@@ -23,5 +23,8 @@ class LandingPagePresenter: ILandingPagePresenter {
     func viewDidLoad(view: ILandingPageViewController) {
         self.view = view
     }
-    //TODO: - add your code here
+    
+    func toHistory() {
+        router.navigateToHistory()
+    }
 }
