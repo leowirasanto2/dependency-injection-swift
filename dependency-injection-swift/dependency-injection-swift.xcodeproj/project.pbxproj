@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4CC6AE4D63A5CCEC11446673 /* Pods_dependency_injection_swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D483CDCE1AF1FD5D91EDB2E6 /* Pods_dependency_injection_swift.framework */; };
+		8E47F4282B56EB13007B88AA /* HistoryPageAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E47F4272B56EB13007B88AA /* HistoryPageAssembly.swift */; };
+		8E47F42A2B56EB1C007B88AA /* LandingPageAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E47F4292B56EB1C007B88AA /* LandingPageAssembly.swift */; };
 		8E7C0C6A2B56C61500192400 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7C0C692B56C61500192400 /* AppDelegate.swift */; };
 		8E7C0C6C2B56C61500192400 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7C0C6B2B56C61500192400 /* SceneDelegate.swift */; };
 		8E7C0C732B56C61700192400 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E7C0C722B56C61700192400 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 
 /* Begin PBXFileReference section */
 		5F25FF447685F9534617488E /* Pods-dependency-injection-swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dependency-injection-swift.debug.xcconfig"; path = "Target Support Files/Pods-dependency-injection-swift/Pods-dependency-injection-swift.debug.xcconfig"; sourceTree = "<group>"; };
+		8E47F4272B56EB13007B88AA /* HistoryPageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPageAssembly.swift; sourceTree = "<group>"; };
+		8E47F4292B56EB1C007B88AA /* LandingPageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageAssembly.swift; sourceTree = "<group>"; };
 		8E7C0C662B56C61500192400 /* dependency-injection-swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dependency-injection-swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7C0C692B56C61500192400 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8E7C0C6B2B56C61500192400 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 				8E7C0C872B56C7BE00192400 /* LandingPageRouter.swift */,
 				8E7C0C882B56C7BE00192400 /* LandingPageViewController.swift */,
 				8E7C0C892B56C7BE00192400 /* LandingPageInteractor.swift */,
+				8E47F4292B56EB1C007B88AA /* LandingPageAssembly.swift */,
 			);
 			path = LandingPage;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				8E7C0CA62B56DECD00192400 /* HistoryPageRouter.swift */,
 				8E7C0CA72B56DECD00192400 /* HistoryPageViewController.swift */,
 				8E7C0CA82B56DECD00192400 /* HistoryPageInteractor.swift */,
+				8E47F4272B56EB13007B88AA /* HistoryPageAssembly.swift */,
 			);
 			path = HistoryPage;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 				8E7C0CA12B56D78100192400 /* BasePage.swift in Sources */,
 				8E7C0C9E2B56D56D00192400 /* BaseModule.swift in Sources */,
 				8E7C0CA92B56DECD00192400 /* HistoryPageContract.swift in Sources */,
+				8E47F42A2B56EB1C007B88AA /* LandingPageAssembly.swift in Sources */,
 				8E7C0CAE2B56DECD00192400 /* HistoryPageInteractor.swift in Sources */,
 				8E7C0C8B2B56C7BE00192400 /* LandingPageModule.swift in Sources */,
 				8E7C0CAD2B56DECD00192400 /* HistoryPageViewController.swift in Sources */,
@@ -320,6 +327,7 @@
 				8E7C0C8E2B56C7BE00192400 /* LandingPageViewController.swift in Sources */,
 				8E7C0CAB2B56DECD00192400 /* HistoryPagePresenter.swift in Sources */,
 				8E7C0CAA2B56DECD00192400 /* HistoryPageModule.swift in Sources */,
+				8E47F4282B56EB13007B88AA /* HistoryPageAssembly.swift in Sources */,
 				8E7C0C9C2B56D30000192400 /* ModuleFactory.swift in Sources */,
 				8E7C0C832B56C7B200192400 /* Bridging.swift in Sources */,
 				8E7C0C8D2B56C7BE00192400 /* LandingPageRouter.swift in Sources */,

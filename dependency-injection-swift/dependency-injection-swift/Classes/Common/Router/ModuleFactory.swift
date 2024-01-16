@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Swinject
 
 class ModuleFactory: ProductRouter {
     private var appRouter: IAppRouter
@@ -17,11 +18,15 @@ class ModuleFactory: ProductRouter {
     
     var modules: [String: BaseModule] {
         var result: [String: BaseModule] = [:]
-        let landingModule = LandingPageModule(appRouter: appRouter)
-        let historyModule = HistoryPageModule(appRouter: appRouter)
         
-        result[PageModule.landing.moduleKey] = landingModule
-        result[PageModule.history.moduleKey] = historyModule
+        if let landingModule = appRouter.resolver.resolve(LandingPageModule.self, argument: appRouter) {
+            result[PageModule.landing.moduleKey] = landingModule
+        }
+        
+        if let historyModule = appRouter.resolver.resolve(HistoryPageModule.self, argument: appRouter) {
+            result[PageModule.history.moduleKey] = historyModule
+        }
+        
         return result
     }
     
@@ -29,5 +34,14 @@ class ModuleFactory: ProductRouter {
         if let module = modules[module.moduleKey] {
             module.displayPage(parameters: parameters)
         }
+    }
+    
+    static func getAssemblies() -> [Assembly] {
+        var result: [Assembly] = [
+            LandingPageAssembly(),
+            HistoryPageAssembly()
+        ]
+        
+        return result
     }
 }
