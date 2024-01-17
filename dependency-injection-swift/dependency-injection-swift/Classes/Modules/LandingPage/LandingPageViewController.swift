@@ -12,10 +12,17 @@ import UIKit
 class LandingPageViewController: UIViewController, ILandingPageViewController {
     private let presenter: ILandingPagePresenter
     
+    private lazy var tableView: UITableView = { [weak self] in
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.dataSource = self
+        $0.register(ArticleListCell.self, forCellReuseIdentifier: ArticleListCell.identifier)
+        return $0
+    }(UITableView())
+    
     init(presenter: ILandingPagePresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
-        view.backgroundColor = .blue
+        view.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
@@ -25,9 +32,7 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad(view: self)
-        
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(test)))
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,8 +44,33 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
         navigationController?.isNavigationBarHidden = false
     }
     
-    @objc
-    private func test() {
-        presenter.toHistory()
+    private func setupView() {
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+}
+
+extension LandingPageViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.articles?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListCell.identifier, for: indexPath) as? ArticleListCell else { return UITableViewCell(frame: .null) }
+        cell.configure(presenter.articles?[indexPath.row])
+        return cell
+    }
+}
+
+extension LandingPageViewController {
+    func newsDataUpdated() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 }

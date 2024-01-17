@@ -13,6 +13,8 @@ class LandingPagePresenter: ILandingPagePresenter {
     private let router: ILandingPageRouter
     private let parameters: [String: Any]?
     private let bridging: IBridging?
+    var articles: [Article]?
+    
     weak var view: ILandingPageViewController?
     
     init(bridging: IBridging?, interactor: ILandingPageInteractor, router: ILandingPageRouter, parameters: [String: Any]?) {
@@ -32,8 +34,8 @@ class LandingPagePresenter: ILandingPagePresenter {
     }
     
     func successFetchNews(_ articles: [Article]?) {
-        // TODO: - handle present data from here
-        print("<-> article count: \(articles?.count ?? 0)")
+        self.articles = articles
+        view?.newsDataUpdated()
     }
     
     func failedFetchNews(_ error: CustomError) {

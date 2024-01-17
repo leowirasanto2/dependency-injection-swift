@@ -5,10 +5,12 @@ protocol ILandingPageModule: BaseModule {
 }
 
 protocol ILandingPageViewController: AnyObject {
-    // Presenter to View
+    func newsDataUpdated()
 }
 
 protocol ILandingPagePresenter: AnyObject {
+    var articles: [Article]? { get set }
+    
     func viewDidLoad(view: ILandingPageViewController)
     func toHistory()
     func successFetchNews(_ articles: [Article]?)
