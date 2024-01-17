@@ -15,9 +15,9 @@ class LandingPageInteractor: ILandingPageInteractor {
     init(service: ILandingPageService) {
         self.service = service
     }
-    
-    func fetchNews() {
-        service.fetchNews { [weak self] result in
+
+    func fetchNews(countryCode: String) {
+        service.fetchNews(countryCode: countryCode) { [weak self] result in
             switch result {
             case .success(let response):
                 self?.presenter?.successFetchNews(response.dataModel.articles)

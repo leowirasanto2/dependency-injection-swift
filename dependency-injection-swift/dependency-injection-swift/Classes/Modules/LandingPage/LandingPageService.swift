@@ -14,11 +14,11 @@ class LandingPageService: ILandingPageService {
         self.apiService = apiService
     }
     
-    func fetchNews(_ result: @escaping (Result<NewsResponse, CustomError>) -> Void) {
+    func fetchNews(countryCode: String, _ result: @escaping (Result<NewsResponse, CustomError>) -> Void) {
         let request = APIRequest(
             endPoint: "/v2/top-headlines",
             parameters: [
-                "country": "us",
+                "country": countryCode,
                 "apiKey": "283968034fbc4db691fd4115a1e2daec",
                 "pageSize": "10"
             ]

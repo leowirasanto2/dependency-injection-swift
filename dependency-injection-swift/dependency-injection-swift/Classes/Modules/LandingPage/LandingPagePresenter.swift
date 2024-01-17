@@ -12,17 +12,19 @@ class LandingPagePresenter: ILandingPagePresenter {
     private let interactor: ILandingPageInteractor
     private let router: ILandingPageRouter
     private let parameters: [String: Any]?
+    private let bridging: IBridging?
     weak var view: ILandingPageViewController?
     
-    init(interactor: ILandingPageInteractor, router: ILandingPageRouter, parameters: [String: Any]?) {
+    init(bridging: IBridging?, interactor: ILandingPageInteractor, router: ILandingPageRouter, parameters: [String: Any]?) {
         self.interactor = interactor
         self.router = router
         self.parameters = parameters
+        self.bridging = bridging
     }
     
     func viewDidLoad(view: ILandingPageViewController) {
         self.view = view
-        interactor.fetchNews()
+        interactor.fetchNews(countryCode: (bridging?.countryCode ?? "id").lowercased())
     }
     
     func toHistory() {
