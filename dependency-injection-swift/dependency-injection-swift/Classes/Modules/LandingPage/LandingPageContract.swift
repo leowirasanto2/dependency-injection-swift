@@ -11,15 +11,18 @@ protocol ILandingPageViewController: AnyObject {
 protocol ILandingPagePresenter: AnyObject {
     func viewDidLoad(view: ILandingPageViewController)
     func toHistory()
-    // View to Presenter
-    // & Interactor to Presenter
+    func successFetchNews(_ articles: [Article]?)
+    func failedFetchNews(_ error: CustomError)
 }
 
 protocol ILandingPageInteractor: AnyObject {
-    // Presenter to Interactor
+    func fetchNews()
 }
 
 protocol ILandingPageRouter: AnyObject {
-    // Presenter to Router
     func navigateToHistory()
+}
+
+protocol ILandingPageService: AnyObject {
+    func fetchNews(_ result: @escaping (Result<NewsResponse, CustomError>) -> Void)
 }

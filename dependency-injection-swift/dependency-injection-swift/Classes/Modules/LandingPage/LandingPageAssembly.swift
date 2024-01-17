@@ -16,8 +16,9 @@ class LandingPageAssembly: Assembly {
         }
         
         // INTERACTOR
-        container.register(LandingPageInteractor.self) { (_) in
-            return LandingPageInteractor()
+        container.register(LandingPageInteractor.self) { (resolver, appRouter: IAppRouter) in
+            guard let service = resolver.resolve(LandingPageService.self, argument: appRouter) else { fatalError("cant resolve service") }
+            return LandingPageInteractor(service: service)
         }
         
         // ROUTER
@@ -30,9 +31,15 @@ class LandingPageAssembly: Assembly {
             return LandingPagePresenter(interactor: interactor, router: router, parameters: param)
         }
         
+        // SERVICE
+        container.register(LandingPageService.self) { (resolver, appRouter: IAppRouter) in
+            guard let service = resolver.resolve(APIService.self, argument: appRouter) else { fatalError("cant resolve service") }
+            return LandingPageService(apiService: service)
+        }
+        
         // VIEW
         container.register(LandingPageViewController.self) { (resolver, appRouter: IAppRouter, param: [String: Any]?) in
-            guard let interactor = resolver.resolve(LandingPageInteractor.self) else { fatalError("cant resolve interactor") }
+            guard let interactor = resolver.resolve(LandingPageInteractor.self, argument: appRouter) else { fatalError("cant resolve interactor") }
             guard let router = resolver.resolve(LandingPageRouter.self, argument: appRouter) else { fatalError("cant resolve router") }
             guard let presenter = resolver.resolve(LandingPagePresenter.self, arguments: interactor, router, param) else { fatalError("cant resolve presenter") }
             interactor.presenter = presenter

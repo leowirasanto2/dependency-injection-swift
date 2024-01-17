@@ -37,9 +37,10 @@ class ModuleFactory: ProductRouter {
     }
     
     static func getAssemblies() -> [Assembly] {
-        var result: [Assembly] = [
+        let result: [Assembly] = [
             LandingPageAssembly(),
-            HistoryPageAssembly()
+            HistoryPageAssembly(),
+            CommonAssembler(),
         ]
         
         return result

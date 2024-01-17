@@ -22,9 +22,20 @@ class LandingPagePresenter: ILandingPagePresenter {
     
     func viewDidLoad(view: ILandingPageViewController) {
         self.view = view
+        interactor.fetchNews()
     }
     
     func toHistory() {
         router.navigateToHistory()
+    }
+    
+    func successFetchNews(_ articles: [Article]?) {
+        // TODO: - handle present data from here
+        print("<-> article count: \(articles?.count ?? 0)")
+    }
+    
+    func failedFetchNews(_ error: CustomError) {
+        // TODO: - handle error
+        print("<-> failed to get news")
     }
 }
