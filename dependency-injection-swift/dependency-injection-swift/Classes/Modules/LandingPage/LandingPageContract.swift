@@ -18,7 +18,7 @@ protocol ILandingPagePresenter: AnyObject {
 }
 
 protocol ILandingPageInteractor: AnyObject {
-    func fetchNews(countryCode: String)
+    func fetchHeadlineNews(countryCode: String)
 }
 
 protocol ILandingPageRouter: AnyObject {
@@ -26,5 +26,5 @@ protocol ILandingPageRouter: AnyObject {
 }
 
 protocol ILandingPageService: AnyObject {
-    func fetchNews(countryCode: String, _ result: @escaping (Result<NewsResponse, CustomError>) -> Void)
+    func fetchHeadlineNews(countryCode: String, _ result: @escaping (Result<NewsResponse, CustomError>) -> Void)
 }

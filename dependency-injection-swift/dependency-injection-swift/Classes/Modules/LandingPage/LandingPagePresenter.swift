@@ -26,7 +26,7 @@ class LandingPagePresenter: ILandingPagePresenter {
     
     func viewDidLoad(view: ILandingPageViewController) {
         self.view = view
-        interactor.fetchNews(countryCode: (bridging?.countryCode ?? "id").lowercased())
+        interactor.fetchHeadlineNews(countryCode: (bridging?.countryCode ?? "id").lowercased())
     }
     
     func toHistory() {

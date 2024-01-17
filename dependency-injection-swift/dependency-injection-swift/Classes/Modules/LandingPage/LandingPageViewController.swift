@@ -16,6 +16,7 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
         $0.register(ArticleListCell.self, forCellReuseIdentifier: ArticleListCell.identifier)
+        $0.register(TopArticleCell.self, forCellReuseIdentifier: TopArticleCell.identifier)
         return $0
     }(UITableView())
     
@@ -61,9 +62,16 @@ extension LandingPageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListCell.identifier, for: indexPath) as? ArticleListCell else { return UITableViewCell(frame: .null) }
-        cell.configure(presenter.articles?[indexPath.row])
-        return cell
+        let data = presenter.articles?[indexPath.row]
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TopArticleCell.identifier, for: indexPath) as? TopArticleCell else { return UITableViewCell(frame: .null) }
+            cell.configure(data)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ArticleListCell.identifier, for: indexPath) as? ArticleListCell else { return UITableViewCell(frame: .null) }
+            cell.configure(data)
+            return cell
+        }
     }
 }
 
