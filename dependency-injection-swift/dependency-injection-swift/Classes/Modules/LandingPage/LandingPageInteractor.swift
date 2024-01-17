@@ -9,10 +9,21 @@
 import Foundation
 
 class LandingPageInteractor: ILandingPageInteractor {
+    private let service: ILandingPageService
     weak var presenter: ILandingPagePresenter?
     
-    init() {
+    init(service: ILandingPageService) {
+        self.service = service
     }
-    
-    //TODO: - add your code here
+
+    func fetchNews(countryCode: String) {
+        service.fetchNews(countryCode: countryCode) { [weak self] result in
+            switch result {
+            case .success(let response):
+                self?.presenter?.successFetchNews(response.dataModel.articles)
+            case .failure(let error):
+                self?.presenter?.failedFetchNews(error)
+            }
+        }
+    }
 }

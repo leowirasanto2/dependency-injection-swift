@@ -12,6 +12,7 @@ import UIKit
 protocol IAppRouter: ProductRouter {
     var navigationController: UINavigationController? { get set }
     var resolver: Resolver { get }
+    var bridging: IBridging? { get }
     
     func presentView(_ view: UIViewController?, animated: Bool)
     func pushView(_ view: UIViewController?, animated: Bool)
@@ -24,10 +25,12 @@ class AppRouter: IAppRouter {
     private var rootVC: UIViewController?
     var resolver: Resolver
     var navigationController: UINavigationController?
+    var bridging: IBridging?
     
     init(assembler: Assembler, productConstructor: @escaping (_ appRouter: IAppRouter) -> ProductRouter) {
         self.resolver = assembler.resolver
         self.productConstructor = productConstructor
+        self.bridging = resolver.resolve(Bridging.self)
     }
     
     func presentModule(_ module: Module, parameters: [String : Any]) {

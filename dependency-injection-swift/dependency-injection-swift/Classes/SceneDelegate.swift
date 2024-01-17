@@ -45,6 +45,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         assembler.apply(assemblies: ModuleFactory.getAssemblies())
         return AppRouter(assembler: assembler, productConstructor: productConstructors)
     }
+    
+    func configureCommons(resolver: Resolver) {
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
