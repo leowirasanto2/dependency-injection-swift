@@ -1,4 +1,4 @@
-//  
+//
 //  LandingPageViewController.swift
 //  dependency-injection-swift
 //
@@ -11,12 +11,12 @@ import UIKit
 
 class LandingPageViewController: UIViewController, ILandingPageViewController {
     private let presenter: ILandingPagePresenter
-    
     private lazy var tableView: UITableView = { [weak self] in
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
         $0.register(ArticleListCell.self, forCellReuseIdentifier: ArticleListCell.identifier)
         $0.register(TopArticleCell.self, forCellReuseIdentifier: TopArticleCell.identifier)
+        $0.separatorStyle = .none
         return $0
     }(UITableView())
     
@@ -48,7 +48,7 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
     private func setupView() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
@@ -57,6 +57,10 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
 }
 
 extension LandingPageViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.articles?.count ?? 0
     }
@@ -72,6 +76,10 @@ extension LandingPageViewController: UITableViewDataSource {
             cell.configure(data)
             return cell
         }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Headline News"
     }
 }
 
