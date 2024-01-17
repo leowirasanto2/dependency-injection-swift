@@ -7,5 +7,5 @@ target 'dependency-injection-swift' do
 
   # Pods for dependency-injection-swift
   pod 'Swinject'
-
+  pod 'AlamofireImage', '~> 4.3'
 end
