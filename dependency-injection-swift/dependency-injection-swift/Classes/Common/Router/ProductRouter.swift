@@ -18,6 +18,7 @@ protocol ProductRouter: AnyObject {
 enum PageModule: Module {
     case landing
     case history
+    case newsDetail
     
     var moduleKey: String {
         switch self {
@@ -25,6 +26,8 @@ enum PageModule: Module {
             return "landing-page-key"
         case .history:
             return "history-page-key"
+        case .newsDetail:
+            return "news-detail-page-key"
         }
     }
 }

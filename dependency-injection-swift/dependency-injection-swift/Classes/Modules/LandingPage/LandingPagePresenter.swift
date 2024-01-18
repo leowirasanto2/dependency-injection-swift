@@ -42,4 +42,8 @@ class LandingPagePresenter: ILandingPagePresenter {
         // TODO: - handle error
         print("<-> failed to get news")
     }
+    
+    func presentNewsDetail(_ article: Article?) {
+        router.navigateToNewsDetail(article)
+    }
 }

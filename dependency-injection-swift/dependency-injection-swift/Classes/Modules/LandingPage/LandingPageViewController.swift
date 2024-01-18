@@ -14,6 +14,7 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
     private lazy var tableView: UITableView = { [weak self] in
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.dataSource = self
+        $0.delegate = self
         $0.register(ArticleListCell.self, forCellReuseIdentifier: ArticleListCell.identifier)
         $0.register(TopArticleCell.self, forCellReuseIdentifier: TopArticleCell.identifier)
         $0.separatorStyle = .none
@@ -56,7 +57,11 @@ class LandingPageViewController: UIViewController, ILandingPageViewController {
     }
 }
 
-extension LandingPageViewController: UITableViewDataSource {
+extension LandingPageViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.presentNewsDetail(presenter.articles?[indexPath.row])
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

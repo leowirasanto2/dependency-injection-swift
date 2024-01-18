@@ -15,6 +15,7 @@ protocol ILandingPagePresenter: AnyObject {
     func toHistory()
     func successFetchNews(_ articles: [Article]?)
     func failedFetchNews(_ error: CustomError)
+    func presentNewsDetail(_ article: Article?)
 }
 
 protocol ILandingPageInteractor: AnyObject {
@@ -23,6 +24,7 @@ protocol ILandingPageInteractor: AnyObject {
 
 protocol ILandingPageRouter: AnyObject {
     func navigateToHistory()
+    func navigateToNewsDetail(_ article: Article?)
 }
 
 protocol ILandingPageService: AnyObject {

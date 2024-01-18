@@ -77,6 +77,10 @@ class ArticleListCell: UITableViewCell {
             newsImage.image = nil
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(false, animated: true)
+    }
 }
 
 extension ArticleListCell {
