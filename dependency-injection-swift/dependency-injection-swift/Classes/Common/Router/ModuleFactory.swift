@@ -27,6 +27,10 @@ class ModuleFactory: ProductRouter {
             result[PageModule.history.moduleKey] = historyModule
         }
         
+        if let newsDetailModule = appRouter.resolver.resolve(NewsDetailPageModule.self, argument: appRouter) {
+            result[PageModule.newsDetail.moduleKey] = newsDetailModule
+        }
+        
         return result
     }
     
@@ -40,6 +44,7 @@ class ModuleFactory: ProductRouter {
         let result: [Assembly] = [
             LandingPageAssembly(),
             HistoryPageAssembly(),
+            NewsDetailPageAssembly(),
             CommonAssembler(),
         ]
         

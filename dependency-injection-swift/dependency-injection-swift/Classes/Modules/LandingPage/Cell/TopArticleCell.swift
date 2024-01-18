@@ -87,6 +87,10 @@ class TopArticleCell: UITableViewCell {
             headlineImage.image = nil
         }
     }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(false, animated: true)
+    }
 }
 
 private extension TopArticleCell {

@@ -19,4 +19,8 @@ class LandingPageRouter: ILandingPageRouter {
     func navigateToHistory() {
         appRouter.presentModule(PageModule.history, parameters: [:])
     }
+    
+    func navigateToNewsDetail(_ article: Article?) {
+        appRouter.presentModule(PageModule.newsDetail, parameters: ["article-object": article as AnyObject])
+    }
 }
